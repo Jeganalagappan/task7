@@ -1,0 +1,148 @@
+
+part 1:
+
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+</head>
+
+<body>
+
+<script>
+let countryData = new XMLHttpRequest();
+countryData.open("GET", "https://restcountries.com/v3.1/all", true);
+countryData.onload=function (){
+    let countryData=JSON.parse(this.response);
+    let asia=countryData.filter((a)=>{
+        if(a.region==='Asia'){
+            return a.name;
+        }
+    })
+    console.log(asia);
+};
+countryData.send();
+</script>
+</body>
+</html>
+
+
+part 2:
+
+
+<html>
+<head>
+<meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+</head>
+
+<body>
+
+<script>
+let countryData=new XMLHttpRequest();
+countryData.open("GET", "https://restcountries.com/v3.1/all", true);
+countryData.onload=function (){
+          let countryData=JSON.parse(this.response);
+          let populate=countryData.filter((element)=>{
+           return element.population<200000;
+          })
+         console.log(populate);
+        }
+       countryData.send();
+</script>
+</body>
+</html>
+
+
+part 3:
+
+
+<html>
+<head>
+<meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+</head>
+
+<body>
+
+<script>
+let countryData=new XMLHttpRequest();
+countryData.open("GET", "https://restcountries.com/v3.1/all", true);
+countryData.onload=function (){
+    let countryData=JSON.parse(this.response);
+    countryData.forEach((element)=>{
+        console.log(element.name,element.capital,element.flag);
+    })}
+       countryData.send();
+</script>
+</body>
+</html>
+
+part 4:
+
+<html>
+<head>
+<meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+</head>
+
+<body>
+
+<script>
+let countryData = new XMLHttpRequest();
+countryData.open("GET", "https://restcountries.com/v3.1/all", "true");
+countryData.onload = function () {
+  let countryData = JSON.parse(this.response);
+  let totalPopulation = countryData.reduce(
+    (accumulator, country) => accumulator + country.population,
+    0
+  );
+  console.log("Total population of country :", totalPopulation);
+};
+       
+       countryData.send();
+</script>
+</body>
+</html>
+
+
+part 5:
+
+
+<html>
+<head>
+<meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+</head>
+
+<body>
+
+<script>
+var countryData = new XMLHttpRequest();
+countryData.open("GET", "https://restcountries.com/v3.1/all", "true");
+countryData.onload=function(){
+    var res=JSON.parse(countryData.response);
+   var currency = res.filter((element) => {
+     for(let key in element.currencies){
+        if(element.currencies[key].code === "USD"){
+            return element;
+        }
+     }
+   })
+        console.log(currency);
+    }
+
+   countryData.send();
+</script>
+</body>
+</html>
